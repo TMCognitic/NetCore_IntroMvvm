@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NetCore_IntroMvvm"
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+             xmlns:conv="clr-namespace:NetCore_IntroMvvm.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <vm:MainViewModel x:Key="Main" />
+        <conv:Int32ToSolidColorBrushConverter x:Key="Int32ToSolidColorBrush" />
     </Application.Resources>
 </Application>

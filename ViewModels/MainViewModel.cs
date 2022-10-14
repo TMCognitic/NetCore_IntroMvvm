@@ -1,4 +1,5 @@
-﻿using Tools.Mvvm.Commands;
+﻿using System.Collections.ObjectModel;
+using Tools.Mvvm.Commands;
 using Tools.Mvvm.Observable;
 
 namespace ViewModels
@@ -8,6 +9,9 @@ namespace ViewModels
         private int _value;
         private ICommand? _incrementCommand;
         private ICommand? _decrementCommand;
+        private ICommand? _addCommand;
+
+        private readonly ObservableCollection<int> _items;
 
         public int Value
         {
@@ -41,8 +45,25 @@ namespace ViewModels
             }
         }
 
-        public MainViewModel()
+        public ICommand? AddCommand
         {
+            get
+            {
+                return _addCommand ??= new DelegateCommand(() => Items.Add(Value));
+            }
+        }
+
+        public ObservableCollection<int> Items
+        {
+            get
+            {
+                return _items;
+            }
+        }
+
+        public MainViewModel()
+        {            
+            _items = new ObservableCollection<int>();
         }
 
         public void Increment() // <- Execute

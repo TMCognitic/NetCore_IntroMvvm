@@ -10,13 +10,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Viewbox>
-            <TextBlock Text="{Binding Value}" />
+            <TextBlock Text="{Binding Value}" Foreground="{Binding Value, Converter={StaticResource Int32ToSolidColorBrush}}" />
         </Viewbox>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Button Command="{Binding IncrementCommand}">
@@ -24,11 +26,19 @@
                     <TextBlock Text="+" />
                 </Viewbox>
             </Button>
-            <Button Grid.Row="1" Command="{Binding DecrementCommand}">
+            <Button Grid.Row="1" FontSize="26" Content="Add" Command="{Binding AddCommand}" />
+            <Button Grid.Row="2" Command="{Binding DecrementCommand}">
                 <Viewbox>
                     <TextBlock Text="-" />
                 </Viewbox>
             </Button>
         </Grid>
+        <ListBox Grid.Column="2" FontSize="26" ItemsSource="{Binding Items}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding StringFormat={}Valeur : {0}}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
